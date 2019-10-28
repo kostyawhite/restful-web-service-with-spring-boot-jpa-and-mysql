@@ -12,7 +12,7 @@
     <artifactId>mobile-app-aws</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mobile-app-aws</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Udemy Course: Restful Web Service with Spring Boot JPA and MYSQL</description>
 
     <properties>
         <java.version>1.8</java.version>
