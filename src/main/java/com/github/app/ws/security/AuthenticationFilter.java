@@ -1,6 +1,9 @@
 package com.github.app.ws.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.app.ws.SpringApplicationContext;
+import com.github.app.ws.service.UserService;
+import com.github.app.ws.shared.dto.UserDto;
 import com.github.app.ws.ui.model.request.UserLoginRequestModel;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -61,7 +64,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .signWith(SignatureAlgorithm.HS512, SecutiryConstants.TOKEN_SECRET)
                 .compact();
 
+        UserService userService = (UserService) SpringApplicationContext.getBean("userServiceImpl");
+        UserDto userDto = userService.getUser(userName);
+
         response.addHeader(SecutiryConstants.HEADER_STRING, SecutiryConstants.TOKEN_PREFIX + token);
+        response.addHeader("UserID", userDto.getUserId());
     }
 
 }
