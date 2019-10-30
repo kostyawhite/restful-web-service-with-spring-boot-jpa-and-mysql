@@ -1,6 +1,6 @@
 package com.github.app.ws.service.impl;
 
-import com.github.app.ws.UserRepository;
+import com.github.app.ws.io.repositories.UserRepository;
 import com.github.app.ws.io.entity.UserEntity;
 import com.github.app.ws.service.UserService;
 import com.github.app.ws.shared.Utils;

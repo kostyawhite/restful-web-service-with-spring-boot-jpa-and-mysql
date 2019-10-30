@@ -1,4 +1,4 @@
-package com.github.app.ws;
+package com.github.app.ws.io.repositories;
 
 import com.github.app.ws.io.entity.UserEntity;
 import org.springframework.data.repository.CrudRepository;
