@@ -3,6 +3,7 @@ package com.github.app.ws.ui.controller;
 import com.github.app.ws.service.UserService;
 import com.github.app.ws.shared.dto.UserDto;
 import com.github.app.ws.ui.model.request.UserDetailsRequestModel;
+import com.github.app.ws.ui.model.response.ErrorMessages;
 import com.github.app.ws.ui.model.response.UserRest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,13 @@ public class UserController {
             consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE },
             produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }
     )
-    public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails) {
+    public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails) throws Exception {
 
         UserRest returnValue = new UserRest();
+
+        if (userDetails.getFirstName().isEmpty()) {
+            throw new Exception(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
+        }
 
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(userDetails, userDto);
