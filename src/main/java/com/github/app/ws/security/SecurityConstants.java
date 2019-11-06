@@ -2,7 +2,7 @@ package com.github.app.ws.security;
 
 import com.github.app.ws.SpringApplicationContext;
 
-public class SecutiryConstants {
+public class SecurityConstants {
 
     public static final long EXPIRATION_TIME = 864000000; // 10 days
     public static final String TOKEN_PREFIX = "Bearer ";

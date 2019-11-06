@@ -60,14 +60,14 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         String token = Jwts.builder()
                 .setSubject(userName)
-                .setExpiration(new Date(System.currentTimeMillis() + SecutiryConstants.EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS512, SecutiryConstants.getTokenSecret())
+                .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
+                .signWith(SignatureAlgorithm.HS512, SecurityConstants.getTokenSecret())
                 .compact();
 
         UserService userService = (UserService) SpringApplicationContext.getBean("userServiceImpl");
         UserDto userDto = userService.getUser(userName);
 
-        response.addHeader(SecutiryConstants.HEADER_STRING, SecutiryConstants.TOKEN_PREFIX + token);
+        response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
         response.addHeader("UserID", userDto.getUserId());
     }
 
